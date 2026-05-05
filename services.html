@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — NexisPhos Research Lab</title>
+<meta name="description" content="Six capabilities — websites, web apps, AI automation, SEO, brand systems, and maintenance — engineered for ambitious businesses." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .service-detail-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .service-row {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .service-row:hover { border-color: var(--accent); transform: translateX(4px); }
+  .service-icon {
+    width: 64px; height: 64px;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    background: var(--accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    font-style: italic;
+    flex-shrink: 0;
+  }
+  .service-content h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .service-content p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: 700px;
+  }
+  .service-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    background: var(--bg);
+    color: var(--text-dim);
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    letter-spacing: 0.05em;
+  }
+  .service-arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+  }
+  .service-row:hover .service-arrow { transform: translateX(8px); }
+
+  @media (max-width: 900px) {
+    .service-row { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
+    .service-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark"></div>
+    <div class="logo-text"><strong>NexisPhos</strong><small>Research Lab</small></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="fellowship.html">Fellowship</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Start a project →</a>
+  <button class="menu-btn" id="menuBtn">MENU</button>
+</nav>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <button class="close-btn" id="closeDrawer">CLOSE ✕</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="fellowship.html">Fellowship</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Start a project →</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">HOME</a><span class="sep">/</span><span>SERVICES</span>
+    </div>
+    <h1>Six capabilities. <em>Engineered for impact.</em></h1>
+    <p class="lede">From a 5-page marketing site to a full-stack web application, every NPRL capability runs on the same disciplined methodology — fixed scope, fixed timeline, senior code review, transparent pricing.</p>
+  </div>
+</div>
+
+<!-- SERVICES LIST -->
+<section style="padding-top: 4rem;">
+  <div class="container">
+    <div class="service-detail-grid reveal">
+      <a class="service-row" href="services/websites.html">
+        <div class="service-icon">w</div>
+        <div class="service-content">
+          <h3>Marketing Websites</h3>
+          <p>Conversion-focused sites for SMBs and D2C brands. Built fast, indexed by Google, designed to last beyond a trend cycle.</p>
+          <div class="service-tags">
+            <span class="tag">From ₹14,999</span>
+            <span class="tag">10–21 days</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Sanity CMS</span>
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a class="service-row" href="services/web-apps.html">
+        <div class="service-icon">a</div>
+        <div class="service-content">
+          <h3>Web Applications</h3>
+          <p>Custom dashboards, booking platforms, internal tools, marketplaces. Whatever your operation needs to run on rails — built for production from day one.</p>
+          <div class="service-tags">
+            <span class="tag">From ₹85,000</span>
+            <span class="tag">4–12 weeks</span>
+            <span class="tag">React</span>
+            <span class="tag">Postgres</span>
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a class="service-row" href="services/portfolios.html">
+        <div class="service-icon">p</div>
+        <div class="service-content">
+          <h3>Portfolios &amp; Personal Brands</h3>
+          <p>For founders, creators, freelancers, and students who want to be taken seriously online. Beautiful, fast, indexed for your name.</p>
+          <div class="service-tags">
+            <span class="tag">From ₹9,999</span>
+            <span class="tag">7–14 days</span>
+            <span class="tag">Astro</span>
+            <span class="tag">Motion</span>
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a class="service-row" href="services/ai-automation.html">
+        <div class="service-icon">ai</div>
+        <div class="service-content">
+          <h3>AI &amp; Automation</h3>
+          <p>RAG chatbots, document automation, workflow integrations. We embed AI where it actually saves your team time — nowhere else.</p>
+          <div class="service-tags">
+            <span class="tag">From ₹35,000</span>
+            <span class="tag">2–6 weeks</span>
+            <span class="tag">Claude</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">n8n</span>
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a class="service-row" href="services/seo-growth.html">
+        <div class="service-icon">s</div>
+        <div class="service-content">
+          <h3>Technical SEO &amp; Growth</h3>
+          <p>Google Business, Search Console, GA4, schema markup, page-speed audits. The unglamorous plumbing that actually drives leads.</p>
+          <div class="service-tags">
+            <span class="tag">From ₹8,000/mo</span>
+            <span class="tag">Retainer</span>
+            <span class="tag">GA4</span>
+            <span class="tag">Schema.org</span>
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a class="service-row" href="services/maintenance.html">
+        <div class="service-icon">m</div>
+        <div class="service-content">
+          <h3>Care &amp; Maintenance</h3>
+          <p>Monthly retainers covering updates, security patches, backups, content edits, uptime monitoring. Sleep well — the lab is on watch.</p>
+          <div class="service-tags">
+            <span class="tag">From ₹4,999/mo</span>
+            <span class="tag">Retainer</span>
+            <span class="tag">99.9% Uptime</span>
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Free 30-min discovery call <span class="sep"></span> Fixed scope, fixed price <span class="sep"></span> 50% advance, 50% on launch <span class="sep"></span> 30–90 days post-launch support <span class="sep"></span></span>
+    <span>Free 30-min discovery call <span class="sep"></span> Fixed scope, fixed price <span class="sep"></span> 50% advance, 50% on launch <span class="sep"></span> 30–90 days post-launch support <span class="sep"></span></span>
+  </div>
+</div>
+
+<!-- CTA -->
+<section style="border-top: 1px solid var(--line); text-align: center;">
+  <div class="container reveal">
+    <div class="section-label" style="justify-content: center;">START</div>
+    <h2>Not sure which service fits? <em>Let's talk.</em></h2>
+    <p class="section-intro" style="margin: 1.5rem auto 2.5rem;">A 30-minute discovery call will surface what you actually need. Free. No commitment. We'll send a one-page scope within 48 hours.</p>
+    <a href="contact.html" class="btn-primary">Book a discovery call →</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text"><strong>NexisPhos</strong><small>Research Lab</small></div>
+      </a>
+      <p>An applied research lab building websites, web applications, and AI-driven systems for ambitious businesses across India.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/916266106690">WA</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="fellowship.html">Fellowship</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Capabilities</h5>
+      <ul>
+        <li><a href="services/websites.html">Websites</a></li>
+        <li><a href="services/web-apps.html">Web Apps</a></li>
+        <li><a href="services/portfolios.html">Portfolios</a></li>
+        <li><a href="services/ai-automation.html">AI &amp; Automation</a></li>
+        <li><a href="services/seo-growth.html">SEO &amp; Growth</a></li>
+        <li><a href="services/maintenance.html">Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Get in touch</h5>
+      <ul>
+        <li><a href="mailto:nexisphos@gmail.com">nexisphos@gmail.com</a></li>
+        <li><a href="tel:+916266106690">+91 62661 06690</a></li>
+        <li><a href="https://wa.me/916266106690">WhatsApp →</a></li>
+        <li style="color: var(--text-faint); font-size: 0.85rem; padding-top: 0.5rem;">Indore, MP — India<br>Mon–Sat · 11–8</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© <span id="year">2026</span> NexisPhos Research Lab — Built in Indore</div>
+    <div><a href="#" style="margin-right: 1.5rem;">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
