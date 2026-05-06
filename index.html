@@ -1,1059 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NexisPhos · Research Lab</title>
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<meta name="description" content="An applied research lab building websites, web apps, and AI-driven systems for ambitious businesses. Headquartered in Indore." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<style>
-  /* ============ HOMEPAGE-SPECIFIC ============ */
-  .hero {
-    min-height: 100vh;
-    padding: 9rem 2.5rem 5rem;
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .hero-meta {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    letter-spacing: 0.1em;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.1s forwards;
-  }
-  .hero-meta::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-  .hero h1 { margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.25s forwards; }
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    line-height: 1.65;
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.55s forwards;
-  }
-  .hero-stats {
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.7s forwards;
-  }
-  .hero-stats .stat strong {
-    font-family: 'Instrument Serif', serif;
-    font-size: 2.4rem;
-    color: var(--accent);
-    line-height: 1;
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-  .hero-stats .stat span {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  /* Terminal */
-  .terminal {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.82rem;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-    opacity: 0;
-    animation: fadeIn 1s 0.6s forwards;
-  }
-  .terminal-bar {
-    background: var(--bg-soft);
-    padding: 0.7rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-bottom: 1px solid var(--line);
-  }
-  .terminal-bar .dots { display: flex; gap: 0.4rem; }
-  .terminal-bar .dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.15); }
-  .terminal-bar .title { margin-left: 0.8rem; color: var(--text-faint); font-size: 0.75rem; }
-  .terminal-body { padding: 1.5rem; color: var(--text-dim); }
-  .terminal-body .line { margin-bottom: 0.6rem; }
-  .terminal-body .prompt { color: var(--accent); }
-  .terminal-body .comment { color: var(--text-faint); font-style: italic; }
-  .terminal-body .key { color: #fbbf24; }
-  .terminal-body .val { color: #a78bfa; }
-  .terminal-body .cursor {
-    display: inline-block;
-    width: 8px; height: 1em;
-    background: var(--accent);
-    vertical-align: middle;
-    animation: blink 1s steps(2) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* Capabilities */
-  .capabilities { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .cap-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--line);
-    margin-top: 4rem;
-    border: 1px solid var(--line);
-  }
-  .cap-card {
-    background: var(--bg);
-    padding: 2.5rem 2rem;
-    transition: background 0.3s;
-    position: relative;
-    display: block;
-  }
-  .cap-card:hover { background: var(--panel); }
-  .cap-card:hover .cap-arrow { color: var(--accent); transform: translate(4px, -4px); }
-  .cap-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text-faint);
-    letter-spacing: 0.15em;
-    margin-bottom: 1.2rem;
-  }
-  .cap-card h3 {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.7rem;
-    margin-bottom: 0.7rem;
-  }
-  .cap-card p {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  .cap-tech {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-faint);
-    letter-spacing: 0.05em;
-  }
-  .cap-arrow {
-    position: absolute;
-    top: 2rem; right: 2rem;
-    color: var(--text-faint);
-    font-family: 'IBM Plex Mono', monospace;
-    transition: all 0.3s;
-  }
-
-  /* WHY US */
-  .why { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    margin-top: 4rem;
-    align-items: center;
-  }
-  .why-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .why-list li {
-    background: var(--bg);
-    padding: 1.5rem 1.8rem;
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    gap: 1.2rem;
-    align-items: start;
-  }
-  .why-list .num {
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--accent);
-    font-size: 0.85rem;
-    padding-top: 4px;
-  }
-  .why-list strong {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .why-list p {
-    color: var(--text-dim);
-    font-size: 0.93rem;
-    line-height: 1.55;
-  }
-
-  /* Pricing */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3.5rem;
-  }
-  .price-card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 2.5rem 2rem;
-    position: relative;
-    transition: all 0.3s;
-  }
-  .price-card:hover { border-color: var(--line-bright); transform: translateY(-3px); }
-  .price-card.featured {
-    border-color: var(--accent);
-    background: linear-gradient(180deg, var(--accent-glow) 0%, var(--panel) 30%);
-  }
-  .price-badge {
-    position: absolute;
-    top: -10px; right: 1.5rem;
-    background: var(--accent);
-    color: var(--bg);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.68rem;
-    padding: 0.35rem 0.8rem;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 600;
-  }
-  .price-tier {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-  .price-name {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.9rem;
-    margin-bottom: 0.3rem;
-  }
-  .price-num {
-    font-family: 'Instrument Serif', serif;
-    font-size: 3rem;
-    margin: 1rem 0 0.4rem;
-    line-height: 1;
-  }
-  .price-num small {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--text-faint);
-    margin-left: 0.3rem;
-  }
-  .price-desc {
-    font-size: 0.93rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-    margin-bottom: 1.8rem;
-    padding-bottom: 1.8rem;
-    border-bottom: 1px solid var(--line);
-  }
-  .price-features {
-    list-style: none;
-    margin-bottom: 2rem;
-  }
-  .price-features li {
-    padding: 0.6rem 0;
-    font-size: 0.92rem;
-    color: var(--text-dim);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.7rem;
-  }
-  .price-features li::before {
-    content: '+';
-    color: var(--accent);
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-  }
-  .price-cta {
-    display: block;
-    text-align: center;
-    padding: 0.95rem;
-    border: 1px solid var(--line-bright);
-    color: var(--text);
-    border-radius: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-  }
-  .price-cta:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
-  .price-card.featured .price-cta { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  .price-card.featured .price-cta:hover { background: white; }
-
-  /* Process */
-  .process { background: var(--bg-soft); border-top: 1px solid var(--line); }
-  .process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: 4rem;
-    border-top: 1px solid var(--line);
-  }
-  .step {
-    padding: 2.5rem 2rem 2.5rem 0;
-    border-right: 1px solid var(--line);
-  }
-  .step:last-child { border-right: none; padding-right: 0; }
-  .step:not(:first-child) { padding-left: 2rem; }
-  .step-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    letter-spacing: 0.1em;
-  }
-  .step h3 {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.6rem;
-    margin-bottom: 0.7rem;
-  }
-  .step p { color: var(--text-dim); font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem; }
-  .step-time {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--line);
-  }
-
-  /* Projects */
-  .projects { border-top: 1px solid var(--line); }
-  .project-list {
-    margin-top: 3rem;
-    border-top: 1px solid var(--line);
-  }
-  .project-row {
-    display: grid;
-    grid-template-columns: 60px 2fr 1.5fr 1.5fr 80px;
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--line);
-    align-items: center;
-    transition: padding 0.3s;
-  }
-  .project-row:hover { padding-left: 1rem; }
-  .project-row:hover .proj-arrow { color: var(--accent); transform: translateX(6px); }
-  .proj-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-faint);
-    letter-spacing: 0.1em;
-  }
-  .proj-name {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.5rem;
-  }
-  .proj-name small {
-    display: block;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.85rem;
-    color: var(--text-faint);
-    margin-top: 0.2rem;
-  }
-  .proj-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--text-dim);
-  }
-  .proj-result {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--accent);
-    font-size: 1.1rem;
-  }
-  .proj-arrow {
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--text-faint);
-    text-align: right;
-    transition: all 0.3s;
-  }
-
-  /* Testimonials */
-  .testimonials { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3.5rem;
-  }
-  .testimonial {
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 2rem;
-    position: relative;
-    transition: all 0.3s;
-  }
-  .testimonial:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .testimonial-quote-mark {
-    font-family: 'Instrument Serif', serif;
-    font-size: 4rem;
-    color: var(--accent);
-    line-height: 0.5;
-    margin-bottom: 0.5rem;
-    font-style: italic;
-  }
-  .testimonial p {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.15rem;
-    line-height: 1.5;
-    margin-bottom: 1.8rem;
-    font-style: italic;
-    color: var(--text);
-  }
-  .testimonial-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--line);
-  }
-  .avatar {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-    font-size: 0.95rem;
-    flex-shrink: 0;
-  }
-  .testimonial-meta strong {
-    display: block;
-    font-size: 0.95rem;
-    margin-bottom: 0.15rem;
-  }
-  .testimonial-meta span {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text-faint);
-    letter-spacing: 0.05em;
-  }
-
-  /* FAQ */
-  .faq { border-top: 1px solid var(--line); }
-  .faq-list { max-width: 920px; margin-top: 3rem; }
-  .faq-item {
-    border-bottom: 1px solid var(--line);
-    padding: 1.6rem 0;
-    cursor: pointer;
-  }
-  .faq-q {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.35rem;
-  }
-  .faq-q::after {
-    content: '+';
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.4rem;
-    color: var(--accent);
-    transition: transform 0.3s;
-  }
-  .faq-item.open .faq-q::after { transform: rotate(45deg); }
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s, padding 0.3s;
-    color: var(--text-dim);
-    line-height: 1.7;
-    font-size: 0.96rem;
-  }
-  .faq-item.open .faq-a { max-height: 240px; padding-top: 1rem; }
-
-  /* CTA STRIP */
-  .cta-strip {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 5rem 2.5rem;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-  }
-  .cta-strip h2 {
-    color: var(--bg);
-    margin-bottom: 1rem;
-  }
-  .cta-strip h2 em { color: var(--bg); font-style: italic; }
-  .cta-strip p {
-    font-size: 1.1rem;
-    opacity: 0.85;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    margin-left: auto; margin-right: auto;
-  }
-  .cta-strip .btn {
-    background: var(--bg);
-    color: var(--accent);
-    padding: 1.1rem 2.2rem;
-    border-radius: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.92rem;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    transition: all 0.2s;
-  }
-  .cta-strip .btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
-
-  /* MOBILE */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding: 6rem 1.2rem 3rem; gap: 2.5rem; }
-    .hero-stats { grid-template-columns: 1fr 1fr; }
-    .cap-grid { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .process-grid { grid-template-columns: 1fr; }
-    .step { border-right: none; border-bottom: 1px solid var(--line); padding: 2rem 0 !important; }
-    .step:last-child { border-bottom: none; }
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .project-row { grid-template-columns: 50px 1fr 60px; gap: 1rem; }
-    .proj-tag, .proj-result { display: none; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nexisphos — India's most intense software fellowship. Train students to become Solution Architects in 8 weeks. Get a free business MVP in 7 days." />
+  <title>Nexisphos | Build Fast. Ship Real.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <meta name="theme-color" content="#04080f" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <a href="index.html" class="logo">
-    <div class="logo-mark"></div>
-    <div class="logo-text">
-      <strong>NexisPhos</strong>
-      <small>Research Lab</small>
+  <!-- ══ HEADER ══ -->
+  <header class="site-header" id="top">
+    <div class="container nav-inner">
+      <a class="brand" href="#top"><span class="brand-dot"></span>Nexisphos</a>
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="#fellowship">Fellowship</a>
+        <a href="#platforms">For Business</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn-nav" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20know%20more." target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="fellowship.html">Fellowship</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="contact.html" class="nav-cta">Start a project →</a>
-  <button class="menu-btn" id="menuBtn">MENU</button>
-</nav>
+  </header>
 
-<!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobileDrawer">
-  <button class="close-btn" id="closeDrawer">CLOSE ✕</button>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="fellowship.html">Fellowship</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="contact.html" class="mobile-cta">Start a project →</a>
-</div>
-
-<div class="status-bar">
-  <span class="live"><span class="live-dot"></span>LAB STATUS — ACTIVE</span>
-  <span>NPRL // INDORE, IN // EST. 2026</span>
-  <span>COHORT 001 — APPLICATIONS OPEN</span>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div>
-    <div class="hero-meta">NPRL // APPLIED RESEARCH IN SOFTWARE</div>
-    <h1>Engineering the <em>digital</em> future, one experiment at a time.</h1>
-    <p class="hero-sub">NexisPhos Research Lab is an applied software studio building websites, web applications, and AI-driven systems for ambitious businesses. We work like researchers — methodical, measurable, in cohorts. Headquartered in Indore.</p>
-    <div class="hero-actions">
-      <a href="services.html" class="btn-primary">Explore capabilities →</a>
-      <a href="fellowship.html" class="btn-ghost">Apply for fellowship</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat"><strong>14d</strong><span>Avg. delivery time</span></div>
-      <div class="stat"><strong>96%</strong><span>On-time launch rate</span></div>
-      <div class="stat"><strong>12</strong><span>Fellows per cohort</span></div>
-    </div>
+  <!-- ══ MOBILE NAV ══ -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <nav>
+      <a href="#fellowship" class="mob-link">Fellowship</a>
+      <a href="#platforms" class="mob-link">For Business</a>
+      <a href="#testimonials" class="mob-link">Stories</a>
+      <a href="#contact" class="mob-link">Contact</a>
+      <a class="btn btn-student mob-cta" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply." target="_blank" rel="noopener noreferrer">Apply on WhatsApp →</a>
+    </nav>
   </div>
 
-  <div class="terminal">
-    <div class="terminal-bar">
-      <div class="dots"><span></span><span></span><span></span></div>
-      <div class="title">~/nprl/intake.config</div>
-    </div>
-    <div class="terminal-body">
-      <div class="line"><span class="comment"># Initializing new client engagement</span></div>
-      <div class="line"><span class="prompt">$</span> nprl init --type=website</div>
-      <div class="line">&nbsp;&nbsp;<span class="key">client</span>: <span class="val">"Saachi Café, Indore"</span></div>
-      <div class="line">&nbsp;&nbsp;<span class="key">scope</span>: <span class="val">"5 pages + booking flow"</span></div>
-      <div class="line">&nbsp;&nbsp;<span class="key">timeline</span>: <span class="val">10 days</span></div>
-      <div class="line">&nbsp;&nbsp;<span class="key">budget</span>: <span class="val">₹14,999 fixed</span></div>
-      <div class="line">&nbsp;&nbsp;<span class="key">team</span>: <span class="val">[lead_eng, fellow_2x]</span></div>
-      <div class="line"><span class="comment"># Engagement scoped. Awaiting confirmation...<span class="cursor"></span></span></div>
-    </div>
-  </div>
-</section>
+  <main>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span>Websites <span class="sep"></span> Web Apps <span class="sep"></span> AI Automation <span class="sep"></span> Brand Systems <span class="sep"></span> Technical SEO <span class="sep"></span> Maintenance <span class="sep"></span> Fellowship Program <span class="sep"></span></span>
-    <span>Websites <span class="sep"></span> Web Apps <span class="sep"></span> AI Automation <span class="sep"></span> Brand Systems <span class="sep"></span> Technical SEO <span class="sep"></span> Maintenance <span class="sep"></span> Fellowship Program <span class="sep"></span></span>
-  </div>
-</div>
-
-<!-- CAPABILITIES -->
-<section class="capabilities" id="capabilities">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">01 — Capabilities</div>
-      <h2>Six things we ship <em>at scale.</em></h2>
-      <p class="section-intro">Each capability is a research track — repeatable, measurable, refined across every engagement. We don't reinvent the wheel; we make it spin faster.</p>
-    </div>
-
-    <div class="cap-grid reveal">
-      <a class="cap-card" href="services/websites.html">
-        <div class="cap-num">CAP / 01</div>
-        <h3>Marketing <em>Websites</em></h3>
-        <p>Conversion-focused sites for SMBs and D2C brands. Built fast, indexed by Google, designed to last.</p>
-        <div class="cap-tech">NEXT.JS · TAILWIND · SANITY · VERCEL</div>
-        <div class="cap-arrow">↗</div>
-      </a>
-
-      <a class="cap-card" href="services/web-apps.html">
-        <div class="cap-num">CAP / 02</div>
-        <h3>Web <em>Applications</em></h3>
-        <p>Custom dashboards, booking systems, internal tools. Whatever your operation needs to run on rails.</p>
-        <div class="cap-tech">REACT · NODE · POSTGRES · AWS</div>
-        <div class="cap-arrow">↗</div>
-      </a>
-
-      <a class="cap-card" href="services/portfolios.html">
-        <div class="cap-num">CAP / 03</div>
-        <h3>Portfolios &amp; <em>Personal Brands</em></h3>
-        <p>For founders, creators, freelancers, and students who want to be taken seriously online.</p>
-        <div class="cap-tech">ASTRO · MOTION · SEO · CMS</div>
-        <div class="cap-arrow">↗</div>
-      </a>
-
-      <a class="cap-card" href="services/ai-automation.html">
-        <div class="cap-num">CAP / 04</div>
-        <h3>AI &amp; <em>Automation</em></h3>
-        <p>RAG chatbots, document automation, workflow integrations. We embed AI where it actually saves time.</p>
-        <div class="cap-tech">CLAUDE · GPT · LANGCHAIN · N8N</div>
-        <div class="cap-arrow">↗</div>
-      </a>
-
-      <a class="cap-card" href="services/seo-growth.html">
-        <div class="cap-num">CAP / 05</div>
-        <h3>Technical <em>SEO &amp; Growth</em></h3>
-        <p>Google Business, Search Console, analytics, schema, page speed. The plumbing that drives leads.</p>
-        <div class="cap-tech">GA4 · GSC · SCHEMA · SEMRUSH</div>
-        <div class="cap-arrow">↗</div>
-      </a>
-
-      <a class="cap-card" href="services/maintenance.html">
-        <div class="cap-num">CAP / 06</div>
-        <h3>Care &amp; <em>Maintenance</em></h3>
-        <p>Monthly retainers covering updates, security patches, backups, content edits, monitoring.</p>
-        <div class="cap-tech">MONITORING · BACKUPS · UPTIME</div>
-        <div class="cap-arrow">↗</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why">
-  <div class="container">
-    <div class="why-grid">
-      <div class="reveal">
-        <div class="section-label">02 — Why the Lab</div>
-        <h2>Senior engineering. <em>Honest pricing.</em> Real timelines.</h2>
-        <p class="section-intro" style="margin-top: 1.5rem;">We've stripped out everything that makes hiring an agency painful. What's left is a small, precise team that ships software you can actually run a business on.</p>
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section class="hero" aria-labelledby="hero-h1">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-orb orb-teal"></div>
+        <div class="hero-orb orb-violet"></div>
+        <div class="hero-orb orb-orange"></div>
+        <div class="hero-grid-lines"></div>
+        <div class="hero-noise"></div>
       </div>
 
-      <ul class="why-list reveal">
-        <li>
-          <span class="num">/ 01</span>
-          <div>
-            <strong>Senior eyes on every commit</strong>
-            <p>Lead engineer reviews every feature before it goes live. No "outsourced to a freelancer who vanished" stories.</p>
+      <div class="container hero-layout">
+        <!-- Left: copy -->
+        <div class="hero-copy reveal">
+          <div class="hero-chip">
+            <span class="chip-pulse"></span>
+            Indore, India &nbsp;·&nbsp; Building since 2024
           </div>
-        </li>
-        <li>
-          <span class="num">/ 02</span>
-          <div>
-            <strong>Fixed price. Fixed timeline.</strong>
-            <p>Scope locked in writing on day one. We absorb the cost of our own estimation mistakes, not you.</p>
+          <h1 id="hero-h1">
+            <span class="hl hl-student">Train students.</span>
+            <span class="hl hl-student">Build architects.</span>
+            <span class="hl hl-gap"> </span>
+            <span class="hl hl-business">Launch your platform</span>
+            <span class="hl hl-business">in days. For free.</span>
+          </h1>
+          <p class="hero-sub">We run India's most intense 8-week software fellowship and turn business ideas into live digital platforms — AI-powered, deployed, and built to scale from day one.</p>
+          <div class="hero-btns">
+            <a class="btn btn-student" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20join%20the%208-week%20fellowship." target="_blank" rel="noopener noreferrer">
+              Join the Fellowship
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a class="btn btn-business" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20launch%20my%20business%20platform." target="_blank" rel="noopener noreferrer">
+              Build My Platform
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
           </div>
-        </li>
-        <li>
-          <span class="num">/ 03</span>
-          <div>
-            <strong>You own everything</strong>
-            <p>Domain, code, content, design files — full handover with documentation at launch. Not held hostage.</p>
+          <div class="hero-tags">
+            <span class="htag">AI-First</span>
+            <span class="htag">Live Mentorship</span>
+            <span class="htag">2 Live Projects</span>
+            <span class="htag">Free MVP in 7 Days</span>
+            <span class="htag">App Store Deploys</span>
+            <span class="htag">Post-Launch Support</span>
           </div>
-        </li>
-        <li>
-          <span class="num">/ 04</span>
-          <div>
-            <strong>WhatsApp-native</strong>
-            <p>Reply within 30 minutes during work hours. Updates, previews, invoices — all in one chat.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+        </div>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">03 — Engagement Models</div>
-      <h2>Transparent pricing. <em>No surprises.</em></h2>
-      <p class="section-intro">Three engagement models. Fixed scope, fixed price, fixed timeline. Custom work is custom — we'll talk on WhatsApp within 30 minutes.</p>
+        <!-- Right: terminal + floating badges -->
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="terminal-card">
+            <div class="terminal-bar">
+              <span class="t-dot t-red"></span>
+              <span class="t-dot t-amber"></span>
+              <span class="t-dot t-green"></span>
+              <span class="t-label">nexisphos ~ cohort-04</span>
+            </div>
+            <pre class="t-body" id="termBody"></pre>
+          </div>
+          <div class="f-badge fb-a">
+            <strong>8 Weeks</strong>
+            <span>to Solution Architect</span>
+          </div>
+          <div class="f-badge fb-b">
+            <strong>1 Week</strong>
+            <span>Free Business MVP</span>
+          </div>
+          <div class="f-badge fb-c">
+            <span class="badge-live"></span>
+            <strong>100% Live</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="hero-stats-bar">
+        <div class="container stats-row">
+          <div class="stat-item">
+            <div class="stat-numwrap"><span class="count" data-target="8">0</span><span class="stat-sfx">wks</span></div>
+            <span class="stat-lbl">Fellowship Duration</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-numwrap"><span class="count" data-target="2">0</span><span class="stat-sfx">+</span></div>
+            <span class="stat-lbl">Live Projects per Fellow</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-numwrap"><span class="count" data-target="7">0</span><span class="stat-sfx">days</span></div>
+            <span class="stat-lbl">Business MVP Turnaround</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-numwrap"><span class="count" data-target="100">0</span><span class="stat-sfx">%</span></div>
+            <span class="stat-lbl">Projects Deployed Live</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ MARQUEE ════════════════════════════ -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="mq-track">
+        <div class="mq-inner">
+          <span>React</span><span class="sep">·</span>
+          <span>Node.js</span><span class="sep">·</span>
+          <span>Flutter</span><span class="sep">·</span>
+          <span>PostgreSQL</span><span class="sep">·</span>
+          <span>Claude AI</span><span class="sep">·</span>
+          <span>AWS</span><span class="sep">·</span>
+          <span>Vercel</span><span class="sep">·</span>
+          <span>Google Play</span><span class="sep">·</span>
+          <span>App Store</span><span class="sep">·</span>
+          <span>LangChain</span><span class="sep">·</span>
+          <span>Tailwind CSS</span><span class="sep">·</span>
+          <span>Next.js</span><span class="sep">·</span>
+          <span>Docker</span><span class="sep">·</span>
+          <span>N8N Automations</span><span class="sep">·</span>
+          <span>GPT-4o</span><span class="sep">·</span>
+          <span>Firebase</span><span class="sep">·</span>
+          <!-- duplicate for seamless loop -->
+          <span>React</span><span class="sep">·</span>
+          <span>Node.js</span><span class="sep">·</span>
+          <span>Flutter</span><span class="sep">·</span>
+          <span>PostgreSQL</span><span class="sep">·</span>
+          <span>Claude AI</span><span class="sep">·</span>
+          <span>AWS</span><span class="sep">·</span>
+          <span>Vercel</span><span class="sep">·</span>
+          <span>Google Play</span><span class="sep">·</span>
+          <span>App Store</span><span class="sep">·</span>
+          <span>LangChain</span><span class="sep">·</span>
+          <span>Tailwind CSS</span><span class="sep">·</span>
+          <span>Next.js</span><span class="sep">·</span>
+          <span>Docker</span><span class="sep">·</span>
+          <span>N8N Automations</span><span class="sep">·</span>
+          <span>GPT-4o</span><span class="sep">·</span>
+          <span>Firebase</span><span class="sep">·</span>
+        </div>
+      </div>
     </div>
 
-    <div class="pricing-grid reveal">
-      <div class="price-card">
-        <div class="price-tier">Tier 01</div>
-        <div class="price-name">Probe</div>
-        <div class="price-num">₹14,999<small>/ project</small></div>
-        <p class="price-desc">A clean 5-page website. Ideal for cafés, salons, clinics, and coaching centres just going online.</p>
-        <ul class="price-features">
-          <li>5 pages, mobile-first design</li>
-          <li>Google Business Profile setup</li>
-          <li>WhatsApp click-to-chat integration</li>
-          <li>Foundational SEO</li>
-          <li>Delivery in 10 days</li>
-          <li>30 days post-launch support</li>
+    <!-- ══════════════════════════ FELLOWSHIP ══════════════════════════ -->
+    <section id="fellowship" class="page-section">
+      <div class="container">
+        <div class="sec-label mono">01 — FELLOWSHIP</div>
+        <div class="sec-head reveal">
+          <p class="sec-eyebrow eyebrow-student">For College Students</p>
+          <h2 class="grad-student">Become a Solution Architect.<br/>Not Just Another Developer.</h2>
+          <p class="sec-desc">We don't teach theory. In 8 weeks of live mentorship, you design, build, and deploy real software systems using the latest AI tools — and go live on the internet.</p>
+        </div>
+
+        <div class="cards-grid reveal">
+          <article class="g-card g-card--student">
+            <div class="g-card-icon icon-student">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>The Philosophy</h3>
+            <p>Learning happens by shipping. From day one you solve real problems, build full-stack products, and deploy live systems. Theory ends at orientation.</p>
+            <div class="card-pill card-pill--student">Learn by shipping</div>
+          </article>
+
+          <article class="g-card g-card--student">
+            <div class="g-card-icon icon-student">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3>Full Curriculum</h3>
+            <ul class="card-list">
+              <li>Frontend design and development</li>
+              <li>Backend design and development</li>
+              <li>Database design and architecture</li>
+              <li>Full system integration</li>
+              <li>Cloud hosting and infrastructure</li>
+              <li>Deployment, domains, custom mail</li>
+              <li>Scalable, cost-effective system design</li>
+              <li>Mobile apps to Play Store + App Store</li>
+            </ul>
+          </article>
+
+          <article class="g-card g-card--student g-card--glow">
+            <div class="g-card-icon icon-student">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>What You Walk Away With</h3>
+            <ul class="card-list card-list--outcome">
+              <li>A live, hosted portfolio the world can see</li>
+              <li>2 shipped, real-world projects for employers</li>
+              <li>Deep system design and architecture knowledge</li>
+              <li>The ability to launch platforms independently</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Join timeline -->
+        <div class="timeline-wrap reveal">
+          <h3 class="tl-heading">How to Join</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-num tl-num--student">01</div>
+              <div class="tl-body">
+                <strong>Message on WhatsApp</strong>
+                <p>Text <a href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply." target="_blank" rel="noopener noreferrer">+91 62661 06690</a> or email <a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a> with your interest.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-num tl-num--student">02</div>
+              <div class="tl-body">
+                <strong>Take the Entry Test</strong>
+                <p>A short aptitude test assessing curiosity, logic, and problem-solving — no prior coding required.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-num tl-num--student">03</div>
+              <div class="tl-body">
+                <strong>Get Selected and Onboarded</strong>
+                <p>Selected fellows are welcomed into the cohort with full access to materials, tools, and mentors.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-num tl-num--student">04</div>
+              <div class="tl-body">
+                <strong>Build Live on Google Meet</strong>
+                <p>8 weeks of live sessions — build, learn, and deploy with the lab team reviewing every commit.</p>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-student btn-cta" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply%20for%20the%208-week%20fellowship." target="_blank" rel="noopener noreferrer">Apply on WhatsApp →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PLATFORMS ══════════════════════════ -->
+    <section id="platforms" class="page-section page-section--alt">
+      <div class="container">
+        <div class="sec-label mono">02 — PLATFORMS</div>
+        <div class="sec-head reveal">
+          <p class="sec-eyebrow eyebrow-business">For Businesses and Founders</p>
+          <h2 class="grad-business">Your Idea. Live on the Internet.<br/>In One Week. For Free.</h2>
+          <p class="sec-desc">Got a concept? We turn it into a production-ready digital platform using AI — fully hosted, fully yours. In the age of AI, going digital isn't optional. It's survival.</p>
+        </div>
+
+        <div class="services-grid reveal">
+          <article class="g-card g-card--business">
+            <div class="g-card-icon icon-business">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3>Custom Websites</h3>
+            <p>Performance-first, SEO-optimised sites that generate leads, drive sales, and build authority from launch day.</p>
+          </article>
+
+          <article class="g-card g-card--business">
+            <div class="g-card-icon icon-business">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Mobile Applications</h3>
+            <p>iOS and Android apps built with Flutter — shipped to both app stores fast, with native performance.</p>
+          </article>
+
+          <article class="g-card g-card--business">
+            <div class="g-card-icon icon-business">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <h3>AI Integrations and Agents</h3>
+            <p>RAG chatbots, document automation, workflow intelligence. We embed AI where it saves real time and money.</p>
+          </article>
+
+          <article class="g-card g-card--business">
+            <div class="g-card-icon icon-business">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Business Automations</h3>
+            <p>Automate repetitive operations — notifications, CRM updates, reporting — so your team focuses on growth.</p>
+          </article>
+
+          <article class="g-card g-card--business">
+            <div class="g-card-icon icon-business">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+            </div>
+            <h3>Live Portfolios</h3>
+            <p>Polished portfolios for founders, freelancers, and creators who want to be taken seriously online — fast.</p>
+          </article>
+
+          <article class="g-card g-card--business g-card--highlight">
+            <div class="free-badge">FREE</div>
+            <div class="g-card-icon icon-business">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Free MVP in 7 Days</h3>
+            <p>A working, hosted MVP — no cost, no lock-in, full IP transfer. We just want to prove what we can build together.</p>
+          </article>
+        </div>
+
+        <!-- Process timeline -->
+        <div class="timeline-wrap reveal">
+          <h3 class="tl-heading">How We Work</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-num tl-num--business">01</div>
+              <div class="tl-body">
+                <strong>Connect with Our Experts</strong>
+                <p>WhatsApp at <a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer">+91 62661 06690</a> or email <a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a>. We reply within 30 minutes.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-num tl-num--business">02</div>
+              <div class="tl-body">
+                <strong>Share Your Requirements</strong>
+                <p>Tell us your idea, audience, and success metrics. No pitch deck — just a real conversation.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-num tl-num--business">03</div>
+              <div class="tl-body">
+                <strong>Get a Free MVP in 7 Days</strong>
+                <p>Production-ready, live on the internet, completely yours. Zero hidden costs. Full IP from day one.</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-num tl-num--business">04</div>
+              <div class="tl-body">
+                <strong>Launch, Scale, and Grow</strong>
+                <p>Full launch, ongoing tech support, and maintenance — so you focus entirely on building the business.</p>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-business btn-cta" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20a%20free%20MVP%20for%20my%20business." target="_blank" rel="noopener noreferrer">Book My Free MVP →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ TESTIMONIALS ═════════════════════════ -->
+    <section id="testimonials" class="page-section page-section--proof">
+      <div class="container">
+        <div class="sec-label mono">03 — PROOF</div>
+        <div class="sec-head reveal">
+          <p class="sec-eyebrow">What People Say</p>
+          <h2>Built with Trust.<br/>Backed by Results.</h2>
+          <p class="sec-desc">Real words from real fellows and clients — not stock quotes.</p>
+        </div>
+
+        <div class="testimonials reveal">
+          <article class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"The Fellowship was the best 8 weeks of my college years. Two real client projects shipped, a live portfolio, and three interview calls. Wouldn't trade it for any unpaid Bangalore internship."</p>
+            <div class="testi-author">
+              <div class="testi-avatar avatar-student">PT</div>
+              <div>
+                <strong>Priyanka Tiwari</strong>
+                <span>Fellow 001 · Now Associate, NPRL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"NPRL ran our project like clockwork. Daily WhatsApp updates, a staging URL from week one, and launched exactly on schedule. Bookings nearly tripled after launch."</p>
+            <div class="testi-author">
+              <div class="testi-avatar avatar-business">RS</div>
+              <div>
+                <strong>Rohan Saxena</strong>
+                <span>Founder · Saachi Café, Indore</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testi-card">
+            <div class="testi-quote">"</div>
+            <p>"Three agencies quoted ₹1.5L for a clinic site. Nexisphos delivered something more polished in 21 days at a fraction of the cost. The lead engineer even joined our patient flow discussions."</p>
+            <div class="testi-author">
+              <div class="testi-avatar avatar-business">MV</div>
+              <div>
+                <strong>Dr. Meera Verma</strong>
+                <span>Owner · Meera Clinic, Bhopal</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CTA ════════════════════════════ -->
+    <section id="contact" class="page-section page-section--cta">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
+          <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
+          <p class="cta-over">Ready to build something real?</p>
+          <h2>One Lab. Two Paths.<br/>Zero Wasted Time.</h2>
+          <p class="cta-sub">Students. Founders. Builders. If you have the ambition, we have the tools, the team, and the track record.</p>
+          <div class="cta-btns">
+            <a class="btn btn-student" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply%20for%20the%20fellowship." target="_blank" rel="noopener noreferrer">Apply for Fellowship →</a>
+            <a class="btn btn-business" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20build%20a%20digital%20platform." target="_blank" rel="noopener noreferrer">Build My Platform →</a>
+          </div>
+          <div class="cta-contact-row">
+            <a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a>
+            <span aria-hidden="true">·</span>
+            <a href="tel:+916266106690">+91 62661 06690</a>
+            <span aria-hidden="true">·</span>
+            <span>Indore, MP · Mon–Sat 11am–8pm IST</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════════════ FOOTER ═════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div class="footer-brand-col">
+        <a class="brand" href="#top"><span class="brand-dot"></span>Nexisphos</a>
+        <p>An applied software lab running India's most intense fellowship and building digital platforms for ambitious businesses. Headquartered in Indore, MP.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/nexisphos" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="mailto:hello@nexisphos.in" aria-label="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#fellowship">Fellowship Program</a></li>
+          <li><a href="#platforms">Business Platforms</a></li>
+          <li><a href="#testimonials">Client Stories</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
-        <a href="contact.html" class="price-cta">Choose Probe →</a>
       </div>
 
-      <div class="price-card featured">
-        <div class="price-badge">Most chosen</div>
-        <div class="price-tier">Tier 02</div>
-        <div class="price-name">Studio</div>
-        <div class="price-num">₹39,999<small>/ project</small></div>
-        <p class="price-desc">A polished, custom-designed site that looks like it cost ₹2L. Because it should.</p>
-        <ul class="price-features">
-          <li>Up to 10 pages, custom design system</li>
-          <li>Brand colour &amp; typography setup</li>
-          <li>CMS — edit content yourself</li>
-          <li>Full SEO + GA4 + Search Console</li>
-          <li>Delivery in 21 days</li>
-          <li>90 days support &amp; revisions</li>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <ul class="contact-list">
+          <li><a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a></li>
+          <li><a href="tel:+916266106690">+91 62661 06690</a></li>
+          <li><a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer">WhatsApp →</a></li>
+          <li>Indore, MP — India</li>
+          <li>Mon–Sat · 11am–8pm IST</li>
         </ul>
-        <a href="contact.html" class="price-cta">Choose Studio →</a>
-      </div>
-
-      <div class="price-card">
-        <div class="price-tier">Tier 03</div>
-        <div class="price-name">Bespoke</div>
-        <div class="price-num">₹85,000<small>+ scoped</small></div>
-        <p class="price-desc">Web apps, booking platforms, e-commerce, AI automations. Quoted per scope.</p>
-        <ul class="price-features">
-          <li>Discovery &amp; scoping workshop</li>
-          <li>Custom backend &amp; database</li>
-          <li>Auth, payments, dashboards</li>
-          <li>QA &amp; staging environment</li>
-          <li>Timeline based on scope</li>
-          <li>Optional monthly retainer</li>
-        </ul>
-        <a href="contact.html" class="price-cta">Talk to the lab →</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">04 — Methodology</div>
-      <h2>Four phases. <em>No drama.</em></h2>
-      <p class="section-intro">Every engagement runs on the same disciplined cycle. Here's exactly what happens after you message the lab.</p>
-    </div>
-
-    <div class="process-grid reveal">
-      <div class="step">
-        <div class="step-num">PHASE 01</div>
-        <h3>Brief</h3>
-        <p>30-min WhatsApp or video intake. We map your business, customers, and goals. No pitch deck, no fluff.</p>
-        <div class="step-time">DAY 0 · FREE</div>
-      </div>
-      <div class="step">
-        <div class="step-num">PHASE 02</div>
-        <h3>Spec</h3>
-        <p>Within 48 hrs you get a one-page scope, fixed price, fixed timeline. 50% to start. Zero scope creep.</p>
-        <div class="step-time">DAY 1–2 · BINDING</div>
-      </div>
-      <div class="step">
-        <div class="step-num">PHASE 03</div>
-        <h3>Build</h3>
-        <p>Weekly previews on a real staging URL. Lead engineer reviews every commit before it ships to you.</p>
-        <div class="step-time">DAY 3–21 · ITERATIVE</div>
-      </div>
-      <div class="step">
-        <div class="step-num">PHASE 04</div>
-        <h3>Launch</h3>
-        <p>Go-live + handover docs + CMS training. Lab stays on standby through your support window.</p>
-        <div class="step-time">FINAL · LIVE</div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© <span id="year"></span> Nexisphos Research Lab. Built in Indore.</span>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- PROJECTS -->
-<section class="projects" id="projects">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">05 — Selected Work</div>
-      <h2>Recent <em>experiments.</em></h2>
-      <p class="section-intro">A small selection. Every project is logged with a measurable outcome — not just pretty pixels.</p>
-    </div>
-
-    <div class="project-list reveal">
-      <a class="project-row" href="portfolio/saachi-cafe.html">
-        <div class="proj-num">001</div>
-        <div class="proj-name">Saachi Café <small>Indore · Hospitality</small></div>
-        <div class="proj-tag">Website + Booking</div>
-        <div class="proj-result">3.2x bookings in 60 days</div>
-        <div class="proj-arrow">→</div>
-      </a>
-      <a class="project-row" href="portfolio.html">
-        <div class="proj-num">002</div>
-        <div class="proj-name">Dr. Meera's Clinic <small>Bhopal · Healthcare</small></div>
-        <div class="proj-tag">Website + SEO</div>
-        <div class="proj-result">14 keywords on page 1</div>
-        <div class="proj-arrow">→</div>
-      </a>
-      <a class="project-row" href="portfolio.html">
-        <div class="proj-num">003</div>
-        <div class="proj-name">Verma Coaching <small>Indore · Education</small></div>
-        <div class="proj-tag">Lead-gen Site</div>
-        <div class="proj-result">62 enquiries first month</div>
-        <div class="proj-arrow">→</div>
-      </a>
-      <a class="project-row" href="portfolio.html">
-        <div class="proj-num">004</div>
-        <div class="proj-name">Aarav Sharma <small>Pan-India · Personal Brand</small></div>
-        <div class="proj-tag">Designer Portfolio</div>
-        <div class="proj-result">Hired by Lollypop in 3 weeks</div>
-        <div class="proj-arrow">→</div>
-      </a>
-      <a class="project-row" href="portfolio.html">
-        <div class="proj-num">005</div>
-        <div class="proj-name">PathLab Genix <small>Indore · Diagnostics</small></div>
-        <div class="proj-tag">Booking Web App</div>
-        <div class="proj-result">Replaced ₹40K/yr SaaS</div>
-        <div class="proj-arrow">→</div>
-      </a>
-    </div>
-
-    <div style="margin-top: 3rem; text-align: center;" class="reveal">
-      <a href="portfolio.html" class="btn-ghost">View full portfolio →</a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">06 — Client Voice</div>
-      <h2>Built with trust. <em>Backed by results.</em></h2>
-      <p class="section-intro">A few words from people we've shipped for.</p>
-    </div>
-
-    <div class="testimonial-grid reveal">
-      <div class="testimonial">
-        <div class="testimonial-quote-mark">"</div>
-        <p>NPRL ran our website project like clockwork. Daily updates on WhatsApp, a staging link from week one, and the launch was on the day they promised. Bookings nearly tripled.</p>
-        <div class="testimonial-meta">
-          <div class="avatar">RS</div>
-          <div>
-            <strong>Rohan Saxena</strong>
-            <span>FOUNDER · SAACHI CAFÉ</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial">
-        <div class="testimonial-quote-mark">"</div>
-        <p>I'd been quoted ₹1.5L by three Bangalore agencies for a clinic website. NPRL delivered something more polished in 21 days at a fraction of the cost. The Lab Lead even joined patient flow discussions.</p>
-        <div class="testimonial-meta">
-          <div class="avatar">MV</div>
-          <div>
-            <strong>Dr. Meera Verma</strong>
-            <span>OWNER · MEERA CLINIC, BHOPAL</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial">
-        <div class="testimonial-quote-mark">"</div>
-        <p>The Fellowship was the best 8 weeks of my college years. Two real client projects shipped, a paid offer at the end, and a portfolio that got me three interviews. Wouldn't trade it for any unpaid Bangalore internship.</p>
-        <div class="testimonial-meta">
-          <div class="avatar">PT</div>
-          <div>
-            <strong>Priyanka Tiwari</strong>
-            <span>FELLOW 001 · NOW ASSOCIATE</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">07 — Common Questions</div>
-      <h2>Things you're <em>probably</em> wondering.</h2>
-    </div>
-
-    <div class="faq-list reveal">
-      <div class="faq-item">
-        <div class="faq-q">Why do you call yourselves a research lab?</div>
-        <div class="faq-a">Because we treat every engagement as an experiment with a hypothesis, a measurable outcome, and a learning we carry into the next project. It's a methodology, not a marketing slogan. Our internal post-mortems and shared knowledge base are why we get faster and better with every client.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How long does a typical project take?</div>
-        <div class="faq-a">Probe: 10 days. Studio: 21 days. Bespoke: scoped per project, usually 4–8 weeks. We're aggressive on timelines because vague deadlines kill projects.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Are fellows building my project?</div>
-        <div class="faq-a">Fellows from the program may contribute under direct supervision of the lab lead. Every line of code is reviewed before deployment. This is how we keep prices honest without compromising quality. If you'd prefer senior-only delivery, choose the Bespoke tier.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What about hosting and domains?</div>
-        <div class="faq-a">We help you buy and set up your domain (you own it, always). For hosting, most sites run on Vercel or Hostinger — we'll recommend what fits your traffic and budget. Hosting cost is on you, usually ₹300–800/month.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do you work with clients outside Indore?</div>
-        <div class="faq-a">Yes — across India and abroad. Most communication runs over WhatsApp, video calls, and Notion. The lab is just headquartered in Indore.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Can I see a contract before paying?</div>
-        <div class="faq-a">Always. Every engagement starts with a one-page scope agreement covering deliverables, timelines, payment terms, and IP transfer. 50% advance, 50% on launch. No fine print.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA STRIP -->
-<section class="cta-strip">
-  <div class="container">
-    <h2>Ready to <em>ship</em> something real?</h2>
-    <p>Drop us a message on WhatsApp. We reply within 30 minutes during working hours.</p>
-    <a href="https://wa.me/916266106690?text=Hi%20NPRL%2C%20I%27m%20interested%20in%20a%20project" class="btn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Open WhatsApp →
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">
-        <div class="logo-mark"></div>
-        <div class="logo-text">
-          <strong>NexisPhos</strong>
-          <small>Research Lab</small>
-        </div>
-      </a>
-      <p>An applied research lab building websites, web applications, and AI-driven systems for ambitious businesses across India.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-        <a href="#" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-        <a href="https://wa.me/916266106690" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <h5>Explore</h5>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="fellowship.html">Fellowship</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h5>Capabilities</h5>
-      <ul>
-        <li><a href="services/websites.html">Websites</a></li>
-        <li><a href="services/web-apps.html">Web Apps</a></li>
-        <li><a href="services/portfolios.html">Portfolios</a></li>
-        <li><a href="services/ai-automation.html">AI &amp; Automation</a></li>
-        <li><a href="services/seo-growth.html">SEO &amp; Growth</a></li>
-        <li><a href="services/maintenance.html">Maintenance</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h5>Get in touch</h5>
-      <ul>
-        <li><a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a></li>
-        <li><a href="tel:+916266106690">+91 62661 06690</a></li>
-        <li><a href="https://wa.me/916266106690">WhatsApp →</a></li>
-        <li style="color: var(--text-faint); font-size: 0.85rem; padding-top: 0.5rem;">Indore, MP — India<br>Mon–Sat · 11–8</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <div>© <span id="year">2026</span> NexisPhos Research Lab — Built in Indore</div>
-    <div><a href="#" style="margin-right: 1.5rem;">Privacy</a><a href="#">Terms</a></div>
-  </div>
-</footer>
-
-<script src="assets/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
