@@ -1,6 +1,51 @@
 'use strict';
 
-/* ── Scroll reveal ─────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+   NEXISPHOS — script.js (v2)
+
+   ──────────────────────────────────────────────────────────────────────
+   ⚠️  ACTION REQUIRED BEFORE LAUNCH
+   ──────────────────────────────────────────────────────────────────────
+   Replace the two URLs in NEXISPHOS_LINKS below with your real ones:
+
+   1. fellowshipApply  → your Tally / Typeform / Google Form URL
+                         (recommended: Tally, free, https://tally.so)
+   2. businessCall     → your Cal.com / Calendly booking URL
+                         (recommended: Cal.com, free, https://cal.com)
+
+   Until you replace these, the buttons fall back to WhatsApp.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+const NEXISPHOS_LINKS = {
+  fellowshipApply: 'https://tally.so/r/REPLACE_WITH_YOUR_FORM_ID',
+  businessCall:    'https://cal.com/REPLACE_WITH_YOUR_USERNAME/discovery',
+  // Fallback used if either URL above still contains "REPLACE_WITH"
+  whatsappFellowship: 'https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply%20for%20the%20Founding%20Cohort.',
+  whatsappBusiness:   'https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20book%20a%20discovery%20call%20for%20my%20business.'
+};
+
+/* ── Wire up form/booking buttons ───────────────────────── */
+function isPlaceholder(url) {
+  return !url || url.includes('REPLACE_WITH');
+}
+
+function wireButton(id, primaryUrl, fallbackUrl) {
+  const btn = document.getElementById(id);
+  if (!btn) return;
+  const url = isPlaceholder(primaryUrl) ? fallbackUrl : primaryUrl;
+  btn.setAttribute('href', url);
+  btn.setAttribute('target', '_blank');
+  btn.setAttribute('rel', 'noopener noreferrer');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  wireButton('ctaFellowshipBtn', NEXISPHOS_LINKS.fellowshipApply, NEXISPHOS_LINKS.whatsappFellowship);
+  wireButton('ctaBusinessBtn',   NEXISPHOS_LINKS.businessCall,    NEXISPHOS_LINKS.whatsappBusiness);
+  wireButton('fellowshipApplyBtn', NEXISPHOS_LINKS.fellowshipApply, NEXISPHOS_LINKS.whatsappFellowship);
+  wireButton('businessCallBtn',    NEXISPHOS_LINKS.businessCall,    NEXISPHOS_LINKS.whatsappBusiness);
+});
+
+/* ── Scroll reveal ─────────────────────────────────────── */
 const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -15,7 +60,7 @@ const revealObserver = new IntersectionObserver(
 );
 revealEls.forEach((el) => revealObserver.observe(el));
 
-/* ── Animated counters ─────────────────────────────── */
+/* ── Animated counters ─────────────────────────────────── */
 const counters = document.querySelectorAll('.count');
 const counterObserver = new IntersectionObserver(
   (entries) => {
@@ -42,9 +87,9 @@ const counterObserver = new IntersectionObserver(
 );
 counters.forEach((c) => counterObserver.observe(c));
 
-/* ── Mobile hamburger ──────────────────────────────── */
+/* ── Mobile hamburger ──────────────────────────────────── */
 const hamburger = document.getElementById('hamburger');
-const mobileNav  = document.getElementById('mobileNav');
+const mobileNav = document.getElementById('mobileNav');
 if (hamburger && mobileNav) {
   hamburger.addEventListener('click', () => {
     const isOpen = mobileNav.classList.toggle('open');
@@ -64,22 +109,24 @@ if (hamburger && mobileNav) {
   });
 }
 
-/* ── Terminal typewriter ───────────────────────────── */
+/* ── Terminal typewriter ───────────────────────────────── */
+/* v2: removed the "Solution Architect in 8 weeks" claim.
+   Replaced with honest copy aligned to fellowship outcomes. */
 const termBody = document.getElementById('termBody');
 if (termBody) {
   const lines = [
-    '$ npx nexisphos init --fellowship\n',
+    '$ npx nexisphos init --founding-cohort\n',
     '\n',
-    '  Initializing cohort-04...\n',
+    '  Bootstrapping cohort 01...\n',
     '\n',
-    '  Frontend  : React + Tailwind      ✓\n',
-    '  Backend   : Node + PostgreSQL     ✓\n',
-    '  Cloud     : AWS + Vercel          ✓\n',
-    '  AI Layer  : Claude + LangChain    ✓\n',
-    '  Mobile    : Flutter (iOS + Drd)   ✓\n',
+    '  Frontend  : React + Tailwind      \u2713\n',
+    '  Backend   : Node + PostgreSQL     \u2713\n',
+    '  Cloud     : AWS + Vercel          \u2713\n',
+    '  AI Layer  : Claude + LangChain    \u2713\n',
+    '  Mobile    : Flutter (iOS + Drd)   \u2713\n',
     '\n',
     '  Mentor online. Stack ready.\n',
-    '  8 weeks → Solution Architect.\n',
+    '  8 weeks. Real client work.\n',
     '\n',
     '  $ build --live --ship-real _',
   ];
@@ -108,7 +155,20 @@ if (termBody) {
   setTimeout(type, 900);
 }
 
-/* ── Footer year ───────────────────────────────────── */
+/* ── Smooth scroll for in-page anchors (better UX) ─────── */
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href === '#' || href.length < 2) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    const offset = 70; // header height
+    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* ── Footer year ───────────────────────────────────────── */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
-

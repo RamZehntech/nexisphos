@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexisphos — India's most intense software fellowship. Train students to become Solution Architects in 8 weeks. Get a free business MVP in 7 days." />
-  <title>Nexisphos | Build Fast. Ship Real.</title>
+  <meta name="description" content="Nexisphos — an applied software lab in Indore. We build production-ready digital platforms for ambitious businesses and train ship-ready engineers through a hands-on 8-week fellowship." />
+  <title>Nexisphos | Ship Real Software. Train Real Engineers.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
   <meta name="theme-color" content="#04080f" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- ══ CONFIG: replace these with your real form/booking URLs ══ -->
+  <!-- Fellowship application form (Tally/Typeform/Google Form) -->
+  <!-- Business discovery call (Cal.com / Calendly) -->
+  <!-- These IDs are referenced from script.js so you can swap them in one place. -->
 </head>
 <body>
 
@@ -24,13 +29,14 @@
       <nav class="desktop-nav" aria-label="Main">
         <a href="#fellowship">Fellowship</a>
         <a href="#platforms">For Business</a>
-        <a href="#testimonials">Stories</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
-        <a class="btn-nav" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20know%20more." target="_blank" rel="noopener noreferrer">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp Us
+        <a class="btn-nav" href="#contact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Get In Touch
         </a>
         <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -44,9 +50,10 @@
     <nav>
       <a href="#fellowship" class="mob-link">Fellowship</a>
       <a href="#platforms" class="mob-link">For Business</a>
-      <a href="#testimonials" class="mob-link">Stories</a>
+      <a href="#pricing" class="mob-link">Pricing</a>
+      <a href="#faq" class="mob-link">FAQ</a>
       <a href="#contact" class="mob-link">Contact</a>
-      <a class="btn btn-student mob-cta" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply." target="_blank" rel="noopener noreferrer">Apply on WhatsApp →</a>
+      <a class="btn btn-student mob-cta" href="#contact">Apply / Talk to Us →</a>
     </nav>
   </div>
 
@@ -67,32 +74,32 @@
         <div class="hero-copy reveal">
           <div class="hero-chip">
             <span class="chip-pulse"></span>
-            Indore, India &nbsp;·&nbsp; Building since 2024
+            Indore, India &nbsp;·&nbsp; Founding Cohort Open
           </div>
           <h1 id="hero-h1">
-            <span class="hl hl-student">Train students.</span>
-            <span class="hl hl-student">Build architects.</span>
+            <span class="hl hl-student">Train ship-ready engineers.</span>
+            <span class="hl hl-student">Backed by real client work.</span>
             <span class="hl hl-gap"> </span>
             <span class="hl hl-business">Launch your platform</span>
-            <span class="hl hl-business">in days. For free.</span>
+            <span class="hl hl-business">— production-ready, fast.</span>
           </h1>
-          <p class="hero-sub">We run India's most intense 8-week software fellowship and turn business ideas into live digital platforms — AI-powered, deployed, and built to scale from day one.</p>
+          <p class="hero-sub">An applied software lab in Indore. We build production-ready digital platforms for ambitious businesses, and train students to ship real software through a hands-on 8-week fellowship — on real client projects, not toy assignments.</p>
           <div class="hero-btns">
-            <a class="btn btn-student" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20join%20the%208-week%20fellowship." target="_blank" rel="noopener noreferrer">
-              Join the Fellowship
+            <a class="btn btn-student" href="#fellowship">
+              Explore the Fellowship
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
-            <a class="btn btn-business" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20launch%20my%20business%20platform." target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-business" href="#platforms">
               Build My Platform
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
           <div class="hero-tags">
-            <span class="htag">AI-First</span>
+            <span class="htag">AI-First Stack</span>
             <span class="htag">Live Mentorship</span>
-            <span class="htag">2 Live Projects</span>
-            <span class="htag">Free MVP in 7 Days</span>
+            <span class="htag">Real Client Projects</span>
             <span class="htag">App Store Deploys</span>
+            <span class="htag">Indore-Based</span>
             <span class="htag">Post-Launch Support</span>
           </div>
         </div>
@@ -104,21 +111,21 @@
               <span class="t-dot t-red"></span>
               <span class="t-dot t-amber"></span>
               <span class="t-dot t-green"></span>
-              <span class="t-label">nexisphos ~ cohort-04</span>
+              <span class="t-label">nexisphos ~ founding-cohort</span>
             </div>
             <pre class="t-body" id="termBody"></pre>
           </div>
           <div class="f-badge fb-a">
             <strong>8 Weeks</strong>
-            <span>to Solution Architect</span>
+            <span>Hands-On Fellowship</span>
           </div>
           <div class="f-badge fb-b">
-            <strong>1 Week</strong>
-            <span>Free Business MVP</span>
+            <strong>4–8 Weeks</strong>
+            <span>MVP to Production</span>
           </div>
           <div class="f-badge fb-c">
             <span class="badge-live"></span>
-            <strong>100% Live</strong>
+            <strong>Real Projects</strong>
           </div>
         </div>
       </div>
@@ -135,8 +142,8 @@
             <span class="stat-lbl">Live Projects per Fellow</span>
           </div>
           <div class="stat-item">
-            <div class="stat-numwrap"><span class="count" data-target="7">0</span><span class="stat-sfx">days</span></div>
-            <span class="stat-lbl">Business MVP Turnaround</span>
+            <div class="stat-numwrap"><span class="count" data-target="4">0</span><span class="stat-sfx">/qtr</span></div>
+            <span class="stat-lbl">Free Prototypes (capped)</span>
           </div>
           <div class="stat-item">
             <div class="stat-numwrap"><span class="count" data-target="100">0</span><span class="stat-sfx">%</span></div>
@@ -192,9 +199,9 @@
       <div class="container">
         <div class="sec-label mono">01 — FELLOWSHIP</div>
         <div class="sec-head reveal">
-          <p class="sec-eyebrow eyebrow-student">For College Students</p>
-          <h2 class="grad-student">Become a Solution Architect.<br/>Not Just Another Developer.</h2>
-          <p class="sec-desc">We don't teach theory. In 8 weeks of live mentorship, you design, build, and deploy real software systems using the latest AI tools — and go live on the internet.</p>
+          <p class="sec-eyebrow eyebrow-student">For Engineering Students</p>
+          <h2 class="grad-student">Become a Ship-Ready Engineer.<br/>By Building Real Software.</h2>
+          <p class="sec-desc">No toy projects. No theory-only weeks. In 8 weeks of live mentorship, you ship features into real client products — under senior engineer review, with your name on every commit.</p>
         </div>
 
         <div class="cards-grid reveal">
@@ -203,7 +210,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             </div>
             <h3>The Philosophy</h3>
-            <p>Learning happens by shipping. From day one you solve real problems, build full-stack products, and deploy live systems. Theory ends at orientation.</p>
+            <p>You learn by shipping into real production code. From week three, every commit you write is reviewed by a senior engineer and goes into a paying client&rsquo;s product. That&rsquo;s the only way the work becomes resume-grade.</p>
             <div class="card-pill card-pill--student">Learn by shipping</div>
           </article>
 
@@ -213,14 +220,14 @@
             </div>
             <h3>Full Curriculum</h3>
             <ul class="card-list">
-              <li>Frontend design and development</li>
-              <li>Backend design and development</li>
-              <li>Database design and architecture</li>
-              <li>Full system integration</li>
-              <li>Cloud hosting and infrastructure</li>
-              <li>Deployment, domains, custom mail</li>
-              <li>Scalable, cost-effective system design</li>
-              <li>Mobile apps to Play Store + App Store</li>
+              <li>Frontend with modern tooling</li>
+              <li>Backend with C++, .Net, Node.js, Python, Java with REST APIs &amp; auth patterns and modern tooling</li>
+              <li>Database design and PostgreSQL fundamentals, Relational and Non-relational database design and deploy</li>
+              <li>Cloud hosting, CI/CD, and deployment</li>
+              <li>AI integration (Claude, OpenAI, RAG basics)</li>
+              <li>Mobile apps with Flutter (iOS + Android)</li>
+              <li>Pragmatic system design for real workloads</li>
+              <li>Working with clients, scope, and delivery</li>
             </ul>
           </article>
 
@@ -230,12 +237,40 @@
             </div>
             <h3>What You Walk Away With</h3>
             <ul class="card-list card-list--outcome">
-              <li>A live, hosted portfolio the world can see</li>
-              <li>2 shipped, real-world projects for employers</li>
-              <li>Deep system design and architecture knowledge</li>
-              <li>The ability to launch platforms independently</li>
+              <li>2 shipped features in real, live client products</li>
+              <li>A live, hosted portfolio with code on GitHub</li>
+              <li>A written reference from your project lead</li>
+              <li>Pragmatic engineering judgment &mdash; not just syntax</li>
             </ul>
           </article>
+        </div>
+
+        <!-- Founding cohort banner — replaces fake testimonials -->
+        <div class="founding-banner reveal">
+          <div class="founding-pill">
+            <span class="pulse-dot"></span>
+            FOUNDING COHORT &middot; APPLICATIONS OPEN
+          </div>
+          <h3>We&rsquo;re selecting our first cohort right now.</h3>
+          <p>Cohort 01 is intentionally small &mdash; 8 to 10 fellows only &mdash; so we can pair every fellow with a senior engineer and a real client project from week three. Founding cohort fellows pay a discounted fee and get lifetime access to the lab&rsquo;s alumni network.</p>
+          <div class="founding-stats">
+            <div class="fs-item">
+              <span class="fs-num">8&ndash;10</span>
+              <span class="fs-lbl">Cohort Size</span>
+            </div>
+            <div class="fs-item">
+              <span class="fs-num">1:4</span>
+              <span class="fs-lbl">Mentor Ratio</span>
+            </div>
+            <div class="fs-item">
+              <span class="fs-num">2+</span>
+              <span class="fs-lbl">Real Projects</span>
+            </div>
+            <div class="fs-item">
+              <span class="fs-num">8</span>
+              <span class="fs-lbl">Weeks Live</span>
+            </div>
+          </div>
         </div>
 
         <!-- Join timeline -->
@@ -245,33 +280,34 @@
             <div class="tl-item">
               <div class="tl-num tl-num--student">01</div>
               <div class="tl-body">
-                <strong>Message on WhatsApp</strong>
-                <p>Text <a href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply." target="_blank" rel="noopener noreferrer">+91 62661 06690</a> or email <a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a> with your interest.</p>
+                <strong>Submit Your Application</strong>
+                <p>A short application form &mdash; takes about 15 minutes. We ask about your background, why you want to do this, and one short problem-solving question.</p>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-num tl-num--student">02</div>
               <div class="tl-body">
-                <strong>Take the Entry Test</strong>
-                <p>A short aptitude test assessing curiosity, logic, and problem-solving — no prior coding required.</p>
+                <strong>30-Minute Interview</strong>
+                <p>If your application stands out, we&rsquo;ll set up a Google Meet to talk. We&rsquo;re looking for curiosity and grit, not prior coding experience.</p>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-num tl-num--student">03</div>
               <div class="tl-body">
                 <strong>Get Selected and Onboarded</strong>
-                <p>Selected fellows are welcomed into the cohort with full access to materials, tools, and mentors.</p>
+                <p>Selected fellows get cohort access, mentor pairing, project assignment, and full onboarding within one week.</p>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-num tl-num--student">04</div>
               <div class="tl-body">
-                <strong>Build Live on Google Meet</strong>
-                <p>8 weeks of live sessions — build, learn, and deploy with the lab team reviewing every commit.</p>
+                <strong>Build Live for 8 Weeks</strong>
+                <p>Live sessions, paired pairing, real client work. Demo day at the end &mdash; with parents, professors, and local press invited.</p>
               </div>
             </div>
           </div>
-          <a class="btn btn-student btn-cta" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply%20for%20the%208-week%20fellowship." target="_blank" rel="noopener noreferrer">Apply on WhatsApp →</a>
+          <a class="btn btn-student btn-cta" id="fellowshipApplyBtn" href="#contact">Apply for Founding Cohort →</a>
+          <a href="#pricing" class="cta-secondary">See fellowship fee &amp; what&rsquo;s included →</a>
         </div>
       </div>
     </section>
@@ -282,8 +318,8 @@
         <div class="sec-label mono">02 — PLATFORMS</div>
         <div class="sec-head reveal">
           <p class="sec-eyebrow eyebrow-business">For Businesses and Founders</p>
-          <h2 class="grad-business">Your Idea. Live on the Internet.<br/>In One Week. For Free.</h2>
-          <p class="sec-desc">Got a concept? We turn it into a production-ready digital platform using AI — fully hosted, fully yours. In the age of AI, going digital isn't optional. It's survival.</p>
+          <h2 class="grad-business">Production-Ready Digital Platforms.<br/>Built Fast, Built Right.</h2>
+          <p class="sec-desc">From custom websites to AI-integrated platforms to mobile apps &mdash; we build digital products that go live, scale, and earn their keep. Indore-based, transparent pricing, no agency runaround.</p>
         </div>
 
         <div class="services-grid reveal">
@@ -300,14 +336,14 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             </div>
             <h3>Mobile Applications</h3>
-            <p>iOS and Android apps built with Flutter — shipped to both app stores fast, with native performance.</p>
+            <p>iOS and Android apps built with Flutter &mdash; shipped to both app stores fast, with native performance.</p>
           </article>
 
           <article class="g-card g-card--business">
             <div class="g-card-icon icon-business">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
             </div>
-            <h3>AI Integrations and Agents</h3>
+            <h3>AI Integrations &amp; Agents</h3>
             <p>RAG chatbots, document automation, workflow intelligence. We embed AI where it saves real time and money.</p>
           </article>
 
@@ -316,7 +352,7 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <h3>Business Automations</h3>
-            <p>Automate repetitive operations — notifications, CRM updates, reporting — so your team focuses on growth.</p>
+            <p>Automate repetitive operations &mdash; notifications, CRM updates, reporting &mdash; so your team focuses on growth.</p>
           </article>
 
           <article class="g-card g-card--business">
@@ -324,17 +360,27 @@
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
             </div>
             <h3>Live Portfolios</h3>
-            <p>Polished portfolios for founders, freelancers, and creators who want to be taken seriously online — fast.</p>
+            <p>Polished portfolios for founders, freelancers, and creators who want to be taken seriously online &mdash; fast.</p>
           </article>
 
           <article class="g-card g-card--business g-card--highlight">
-            <div class="free-badge">FREE</div>
+            <div class="free-badge">PILOT</div>
             <div class="g-card-icon icon-business">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
-            <h3>Free MVP in 7 Days</h3>
-            <p>A working, hosted MVP — no cost, no lock-in, full IP transfer. We just want to prove what we can build together.</p>
+            <h3>7-Day Free Prototype</h3>
+            <p>Qualified businesses get a free, working 7-day prototype &mdash; so you can see exactly what we&rsquo;ll build before paying. Limited to 4 per quarter.</p>
           </article>
+        </div>
+
+        <!-- Qualification gate — fixes the "free MVP attracts tire-kickers" issue -->
+        <div class="qual-gate reveal">
+          <div class="qual-gate-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+          </div>
+          <div class="qual-gate-text">
+            <strong>About the free 7-day prototype:</strong> we run this as a portfolio-building program for ourselves &mdash; so we cap it at 4 prototypes per quarter and prioritise applications from businesses with annual revenue of &#8377;50L+, or first-time founders ready to commit to a paid build if they love what we ship. The application takes 5 minutes; we reply within 24 hours.
+          </div>
         </div>
 
         <!-- Process timeline -->
@@ -344,106 +390,253 @@
             <div class="tl-item">
               <div class="tl-num tl-num--business">01</div>
               <div class="tl-body">
-                <strong>Connect with Our Experts</strong>
-                <p>WhatsApp at <a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer">+91 62661 06690</a> or email <a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a>. We reply within 30 minutes.</p>
+                <strong>Book a 15-Minute Discovery Call</strong>
+                <p>We&rsquo;ll talk about your business, your goal, and whether we&rsquo;re the right fit. No sales pressure, no pitch deck required.</p>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-num tl-num--business">02</div>
               <div class="tl-body">
-                <strong>Share Your Requirements</strong>
-                <p>Tell us your idea, audience, and success metrics. No pitch deck — just a real conversation.</p>
+                <strong>Get a Written Scope &amp; Quote</strong>
+                <p>Within 48 hours, you get a written scope document with timeline, deliverables, and a fixed quote. No hidden costs, no surprises.</p>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-num tl-num--business">03</div>
               <div class="tl-body">
-                <strong>Get a Free MVP in 7 Days</strong>
-                <p>Production-ready, live on the internet, completely yours. Zero hidden costs. Full IP from day one.</p>
+                <strong>Build &amp; Ship in 4&ndash;8 Weeks</strong>
+                <p>Staging URL from week one. Daily WhatsApp updates. Production launch on the agreed date &mdash; or we keep working until it&rsquo;s right.</p>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-num tl-num--business">04</div>
               <div class="tl-body">
-                <strong>Launch, Scale, and Grow</strong>
-                <p>Full launch, ongoing tech support, and maintenance — so you focus entirely on building the business.</p>
+                <strong>Launch, Scale &amp; Support</strong>
+                <p>Optional monthly retainer covers hosting, fixes, and small features &mdash; so you focus entirely on growing your business.</p>
               </div>
             </div>
           </div>
-          <a class="btn btn-business btn-cta" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20a%20free%20MVP%20for%20my%20business." target="_blank" rel="noopener noreferrer">Book My Free MVP →</a>
+          <a class="btn btn-business btn-cta" id="businessCallBtn" href="#contact">Book Discovery Call →</a>
+          <a href="#pricing" class="cta-secondary">See full pricing &amp; what&rsquo;s included →</a>
         </div>
       </div>
     </section>
 
-    <!-- ═════════════════════════ TESTIMONIALS ═════════════════════════ -->
-    <section id="testimonials" class="page-section page-section--proof">
+    <!-- ════════════════════════════ PRICING ════════════════════════════ -->
+    <section id="pricing" class="page-section">
       <div class="container">
-        <div class="sec-label mono">03 — PROOF</div>
+        <div class="sec-label mono">03 — PRICING</div>
         <div class="sec-head reveal">
-          <p class="sec-eyebrow">What People Say</p>
-          <h2>Built with Trust.<br/>Backed by Results.</h2>
-          <p class="sec-desc">Real words from real fellows and clients — not stock quotes.</p>
+          <p class="sec-eyebrow">Transparent &amp; Fixed</p>
+          <h2>Honest Pricing.<br/>No Surprises, No Inflation.</h2>
+          <p class="sec-desc">Here&rsquo;s exactly what things cost. If your scope changes, we re-quote in writing before any extra work begins.</p>
         </div>
 
-        <div class="testimonials reveal">
-          <article class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>"The Fellowship was the best 8 weeks of my college years. Two real client projects shipped, a live portfolio, and three interview calls. Wouldn't trade it for any unpaid Bangalore internship."</p>
-            <div class="testi-author">
-              <div class="testi-avatar avatar-student">PT</div>
-              <div>
-                <strong>Priyanka Tiwari</strong>
-                <span>Fellow 001 · Now Associate, NPRL</span>
-              </div>
-            </div>
-          </article>
+        <!-- Fellowship pricing -->
+        <h3 style="margin-top:2.5rem; font-size:1.15rem; color:#94a3b8; font-family:'JetBrains Mono', monospace; letter-spacing:0.08em; text-transform:uppercase;">For Students</h3>
+        <div class="pricing-grid reveal">
+          <div class="price-card price-card--featured">
+            <div class="price-tag">Founding Cohort</div>
+            <h4>Fellowship · Cohort 01</h4>
+            <div class="price-amount">&#8377;3,999<span class="price-sfx">one-time</span></div>
+            <p class="price-desc">Discounted founding-cohort price. Future cohorts will be priced higher as we build a track record.</p>
+            <ul class="price-list">
+              <li>8 weeks of live mentorship on Google Meet</li>
+              <li>2+ shipped features in real client products</li>
+              <li>Senior engineer code reviews on every commit</li>
+              <li>Live portfolio + GitHub presence</li>
+              <li>Written reference from your project lead</li>
+              <li>Lifetime alumni network access</li>
+            </ul>
+          </div>
+          <div class="price-card">
+            <div class="price-tag">Future Cohorts</div>
+            <h4>Fellowship · Cohort 02+</h4>
+            <div class="price-amount">&#8377;8,999<span class="price-sfx">onwards</span></div>
+            <p class="price-desc">Pricing for cohorts after we publish founding-cohort outcomes. Subject to revision based on placement data.</p>
+            <ul class="price-list">
+              <li>Same 8-week structure as founding cohort</li>
+              <li>Larger alumni network &amp; client pool</li>
+              <li>Industry referral support</li>
+              <li>Track record of cohort 01 outcomes</li>
+            </ul>
+          </div>
+        </div>
 
-          <article class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>"NPRL ran our project like clockwork. Daily WhatsApp updates, a staging URL from week one, and launched exactly on schedule. Bookings nearly tripled after launch."</p>
-            <div class="testi-author">
-              <div class="testi-avatar avatar-business">RS</div>
-              <div>
-                <strong>Rohan Saxena</strong>
-                <span>Founder · Saachi Café, Indore</span>
-              </div>
-            </div>
-          </article>
+        <!-- Business pricing -->
+        <h3 style="margin-top:3rem; font-size:1.15rem; color:#94a3b8; font-family:'JetBrains Mono', monospace; letter-spacing:0.08em; text-transform:uppercase;">For Businesses</h3>
+        <div class="pricing-grid reveal">
+          <div class="price-card price-card--business">
+            <div class="price-tag">Pilot</div>
+            <h4>7-Day Free Prototype</h4>
+            <div class="price-amount">&#8377;0<span class="price-sfx">qualified businesses only</span></div>
+            <p class="price-desc">Working prototype on a staging URL. Limited to 4 per quarter. Application required.</p>
+            <ul class="price-list">
+              <li>1-page scope brief, written</li>
+              <li>Working prototype on a live staging URL</li>
+              <li>Loom walkthrough of what we built</li>
+              <li>Honest quote for the full build</li>
+            </ul>
+          </div>
+          <div class="price-card price-card--business price-card--featured">
+            <div class="price-tag">Most Popular</div>
+            <h4>Full MVP Build</h4>
+            <div class="price-amount">&#8377;20K&ndash;&#8377;1.5L<span class="price-sfx">fixed quote</span></div>
+            <p class="price-desc">Production-ready website or web app. 4&ndash;8 weeks to launch. Source code is yours.</p>
+            <ul class="price-list">
+              <li>Custom design + development</li>
+              <li>Hosting + domain + SSL setup</li>
+              <li>SEO basics + analytics</li>
+              <li>Daily WhatsApp updates during build</li>
+              <li>30 days of post-launch fixes included</li>
+            </ul>
+          </div>
+          <div class="price-card price-card--business">
+            <div class="price-tag">Recurring</div>
+            <h4>Monthly Retainer</h4>
+            <div class="price-amount">&#8377;10K&ndash;&#8377;25K<span class="price-sfx">/month</span></div>
+            <p class="price-desc">Optional ongoing support after launch. Cancel anytime with 30 days notice.</p>
+            <ul class="price-list">
+              <li>Hosting + uptime monitoring</li>
+              <li>Bug fixes within 24 hours</li>
+              <li>Up to 8 hours/month of small features</li>
+              <li>Priority WhatsApp support</li>
+            </ul>
+          </div>
+        </div>
 
-          <article class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>"Three agencies quoted ₹1.5L for a clinic site. Nexisphos delivered something more polished in 21 days at a fraction of the cost. The lead engineer even joined our patient flow discussions."</p>
-            <div class="testi-author">
-              <div class="testi-avatar avatar-business">MV</div>
-              <div>
-                <strong>Dr. Meera Verma</strong>
-                <span>Owner · Meera Clinic, Bhopal</span>
-              </div>
-            </div>
-          </article>
+        <!-- Add-ons -->
+        <div style="margin-top:2.5rem; padding:1.5rem 1.4rem; border-radius:14px; background:rgba(15, 23, 42, 0.4); border:1px solid rgba(255, 255, 255, 0.06);">
+          <h4 style="font-size:0.95rem; color:#f1f5f9; margin-bottom:0.6rem; font-weight:700;">Common Add-Ons</h4>
+          <p style="font-size:0.86rem; color:#94a3b8; line-height:1.7; margin:0;">
+            Mobile app (Flutter, both stores) <strong style="color:#fb923c;">+&#8377;35K&ndash;&#8377;75K</strong> &middot;
+            AI integration / chatbot <strong style="color:#fb923c;">&#8377;25K&ndash;&#8377;75K</strong> &middot;
+            Business automation workflow <strong style="color:#fb923c;">&#8377;15K&ndash;&#8377;40K</strong> &middot;
+            App store deployment <strong style="color:#fb923c;">&#8377;10K</strong> &middot;
+            Custom domain email setup <strong style="color:#fb923c;">&#8377;3K</strong>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════ CTA ════════════════════════════ -->
+    <!-- ═════════════════════════ TRUST / WHY US ═════════════════════════ -->
+    <section class="page-section page-section--proof">
+      <div class="container">
+        <div class="sec-label mono">04 — WHY US</div>
+        <div class="sec-head reveal">
+          <p class="sec-eyebrow">Honest Differentiators</p>
+          <h2>Built in Indore.<br/>Built to Be Worth Trusting.</h2>
+          <p class="sec-desc">We&rsquo;re a new lab &mdash; we don&rsquo;t pretend otherwise. Here&rsquo;s what we offer instead of inflated testimonials.</p>
+        </div>
+
+        <div class="trust-strip reveal">
+          <div class="trust-card">
+            <div class="trust-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h4>Fixed Written Quotes</h4>
+            <p>You get the full quote in writing before work starts. Scope changes? We re-quote. No surprises on the invoice.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <h4>Daily Updates</h4>
+            <p>You&rsquo;ll get a daily WhatsApp update during your build &mdash; with screenshots and a staging URL from week one.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m0 0v3m0-3h-3m3 0h3M5.636 5.636l1.414 1.414M19.07 4.93l-1.414 1.414M21 12h-3m-12 0H3m1.636 6.364l1.414-1.414"/></svg>
+            </div>
+            <h4>Source Code is Yours</h4>
+            <p>Full IP transfer on delivery. GitHub access, full source. You can hire any developer to maintain it after.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h4>30-Day Fix Guarantee</h4>
+            <p>Any bug found in the first 30 days post-launch is fixed for free. We stand behind what we ship.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ FAQ ═══════════════════════════════ -->
+    <section id="faq" class="page-section page-section--alt">
+      <div class="container">
+        <div class="sec-label mono">05 — FAQ</div>
+        <div class="sec-head reveal">
+          <p class="sec-eyebrow">Common Questions</p>
+          <h2>Everything You&rsquo;d Reasonably Ask.</h2>
+          <p class="sec-desc">Straight answers, including the questions we&rsquo;d ask if we were in your seat.</p>
+        </div>
+
+        <div class="faq-wrap reveal">
+
+          <details class="faq-item">
+            <summary>Is the fellowship really &#8377;3,999? What&rsquo;s the catch?</summary>
+            <p>No catch. &#8377;3,999 is the founding-cohort price for cohort 01 because we&rsquo;re building our reputation and need committed early fellows. Future cohorts will be priced higher (&#8377;8,999+) as we build a placement track record. Founding-cohort fellows get the lowest price the lab will ever offer, plus lifetime alumni network access.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do you guarantee a job at the end of the fellowship?</summary>
+            <p>No, and you should not trust anyone who does. What we guarantee is: 8 weeks of structured mentorship, 2+ shipped features in real client products, a live portfolio, a GitHub history, and a written reference from your project lead. Whether you get a job depends on your work, your interview skills, and the market &mdash; we control the first part, you control the rest.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>I have no coding experience. Can I still apply?</summary>
+            <p>Yes. The application has one short problem-solving question, but no coding test. We&rsquo;re looking for curiosity, communication, and grit. About a third of our short-listed applicants have never written a line of code before. The first two weeks of the fellowship are designed to bring you to a baseline.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How does the free 7-day prototype actually work?</summary>
+            <p>You apply via a short form. We pick 4 businesses per quarter and build them a working prototype on a staging URL within 7 working days. You get a Loom walkthrough and an honest quote for the full build. No commitment to continue with us &mdash; if you take the prototype and walk away, that&rsquo;s fine, the source is yours. We do this to build our portfolio and to filter for serious clients.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why limit to 4 free prototypes per quarter?</summary>
+            <p>Because each one takes a week of senior engineer time, and unlimited free work would mean lower quality and burnout. The cap is honest: we&rsquo;d rather build 4 great prototypes a quarter than 40 mediocre ones.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What if my project takes longer than 4&ndash;8 weeks?</summary>
+            <p>If the delay is on our side &mdash; we keep working at no extra cost until it&rsquo;s done. If the delay is on your side (slower feedback, scope expansion, late content delivery), we&rsquo;ll tell you up front, in writing, before any extra work happens.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Where are you based, and do you work with clients outside Indore?</summary>
+            <p>Indore, Madhya Pradesh. We work with clients across India and a few abroad &mdash; everything is delivered remotely with daily WhatsApp updates and a staging URL. We do prefer in-person discovery calls for Indore and Bhopal-area clients because it builds faster trust.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Who&rsquo;s actually behind Nexisphos?</summary>
+            <p>A small team of working engineers based in Indore. We chose to start a lab here rather than move to Bangalore because we believe Indore&rsquo;s SME ecosystem is underserved and the talent here deserves a reason to stay. We&rsquo;ll add a full team page after Cohort 01 launches.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CTA / CONTACT ════════════════════════════ -->
     <section id="contact" class="page-section page-section--cta">
       <div class="container">
         <div class="cta-card reveal">
           <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
           <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
-          <p class="cta-over">Ready to build something real?</p>
-          <h2>One Lab. Two Paths.<br/>Zero Wasted Time.</h2>
-          <p class="cta-sub">Students. Founders. Builders. If you have the ambition, we have the tools, the team, and the track record.</p>
+          <p class="cta-over">Ready to start?</p>
+          <h2>Two Paths.<br/>Pick Yours.</h2>
+          <p class="cta-sub">Students apply for the founding cohort. Businesses book a 15-minute discovery call. Both routes start with a single form &mdash; we&rsquo;ll reply within 24 hours.</p>
           <div class="cta-btns">
-            <a class="btn btn-student" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20apply%20for%20the%20fellowship." target="_blank" rel="noopener noreferrer">Apply for Fellowship →</a>
-            <a class="btn btn-business" href="https://wa.me/916266106690?text=Hi%20Nexisphos%2C%20I%20want%20to%20build%20a%20digital%20platform." target="_blank" rel="noopener noreferrer">Build My Platform →</a>
+            <a class="btn btn-student" id="ctaFellowshipBtn" href="#" target="_blank" rel="noopener noreferrer">Apply for Fellowship →</a>
+            <a class="btn btn-business" id="ctaBusinessBtn" href="#" target="_blank" rel="noopener noreferrer">Book Discovery Call →</a>
           </div>
           <div class="cta-contact-row">
             <a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a>
             <span aria-hidden="true">·</span>
-            <a href="tel:+916266106690">+91 62661 06690</a>
+            <a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer">WhatsApp +91 62661 06690</a>
             <span aria-hidden="true">·</span>
-            <span>Indore, MP · Mon–Sat 11am–8pm IST</span>
+            <span>Indore, MP &middot; Mon&ndash;Sat 11am&ndash;8pm IST</span>
           </div>
         </div>
       </div>
@@ -455,7 +648,7 @@
     <div class="container footer-layout">
       <div class="footer-brand-col">
         <a class="brand" href="#top"><span class="brand-dot"></span>Nexisphos</a>
-        <p>An applied software lab running India's most intense fellowship and building digital platforms for ambitious businesses. Headquartered in Indore, MP.</p>
+        <p>An applied software lab in Indore. We build production-ready digital platforms for ambitious businesses and train ship-ready engineers through a hands-on fellowship.</p>
         <div class="footer-socials">
           <a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -474,8 +667,8 @@
         <ul>
           <li><a href="#fellowship">Fellowship Program</a></li>
           <li><a href="#platforms">Business Platforms</a></li>
-          <li><a href="#testimonials">Client Stories</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
       </div>
@@ -486,14 +679,14 @@
           <li><a href="mailto:hello@nexisphos.in">hello@nexisphos.in</a></li>
           <li><a href="tel:+916266106690">+91 62661 06690</a></li>
           <li><a href="https://wa.me/916266106690" target="_blank" rel="noopener noreferrer">WhatsApp →</a></li>
-          <li>Indore, MP — India</li>
-          <li>Mon–Sat · 11am–8pm IST</li>
+          <li>Indore, MP &mdash; India</li>
+          <li>Mon&ndash;Sat &middot; 11am&ndash;8pm IST</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <span>© <span id="year"></span> Nexisphos Research Lab. Built in Indore.</span>
+        <span>&copy; <span id="year"></span> Nexisphos Research Lab. Built in Indore.</span>
       </div>
     </div>
   </footer>
